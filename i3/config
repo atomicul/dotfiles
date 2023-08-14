@@ -11,11 +11,26 @@
 
 set $mod Mod1
 
-
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 8
 
+# Enable transparency
+exec --no-startup-id picom
+
+# Set background
+exec feh --bg-scale ~/.config/i3/background.*
+
+# set gaps
+gaps inner 10
+gaps outer 5
+smart_gaps on
+
+# Disable window title bar
+default_border pixel 1
+default_floating_border pixel 1
+
+# Set keyboard layout to Dvorak Programmer
 exec --no-startup-id setxkbmap -layout "us" -variant "dvp" -option ctrl:nocaps
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
@@ -58,13 +73,15 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xfce4-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# start rofi (a program launcher)
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -123,22 +140,21 @@ bindsym $mod+a focus parent
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1: Terminal"
-exec i3-sensible-terminal
-assign [class="Gnome-terminal"] $ws1
+set $ws1 "1: Terminal "
+exec xfce4-terminal
+assign [class="Xfce4-terminal"] $ws1
 
-set $ws2 "2: Discord"
+set $ws2 "2: Discord "
 exec discord
 assign [class="discord"] $ws2
 
-set $ws3 "3: Spotify"
+set $ws3 "3: Spotify "
 exec spotify
 assign [class="Spotify"] $ws3
 
-set $ws10 "0: Browser"
+set $ws10 "0: Chrome "
 exec google-chrome-stable
 assign [class="Google-chrome"] $ws10
-
 
 set $ws4 "4"
 set $ws5 "5"
@@ -146,7 +162,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-
 
 # switch to workspace on primary monitor
 bindsym $mod+1 workspace $ws1; move workspace to output HDMI-A-0
@@ -189,8 +204,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+# lock screen
+bindsym $mod+Shift+x exec ~/.config/i3/lock-screen.sh
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -219,8 +236,27 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+client.background       #F8F8F2
+
 bar {
-        status_command i3status
+  status_command i3status
+  position top
+  colors {
+    background #282A36
+    statusline #F8F8F2
+    separator  #44475A
+
+    focused_workspace  #44475A #44475A #F8F8F2
+    active_workspace   #282A36 #44475A #F8F8F2
+    inactive_workspace #282A36 #282A36 #BFBFBF
+    urgent_workspace   #FF5555 #FF5555 #F8F8F2
+    binding_mode       #FF5555 #FF5555 #F8F8F2
+  }
 }
