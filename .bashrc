@@ -135,10 +135,14 @@ ex() {
 		echo "'$1' is not a valid file"
 	fi
 }
-source /usr/share/nvm/init-nvm.sh
 
 # My aliases
 alias please="sudo"
+alias clip="xclip -sel clip"
 
 # Start tmux on login
 [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit; }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
