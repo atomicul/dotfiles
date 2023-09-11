@@ -159,8 +159,16 @@ set $ws10 "0: Chrome "
 exec google-chrome-stable
 assign [class="Google-chrome"] $ws10
 
-set $ws4 "4"
-set $ws5 "5"
+set $ws4 "4: Gimp "
+exec gimp
+assign [class="Gimp"] $ws4
+
+set $ws5 "Gaming "
+exec lutris
+assign [class="Lutris"] $ws5
+exec steam
+assign [class="steam"] $ws5
+
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
