@@ -23,6 +23,9 @@ exec feh --bg-scale ~/.config/i3/background.*
 
 exec ~/.xinitrc
 
+# Enable blue light filter
+exec --no-startup-id redshift -l 44.31667:23.8
+
 # set gaps
 gaps inner 10
 gaps outer 5
