@@ -21,6 +21,8 @@ exec --no-startup-id picom
 # Set background
 exec feh --bg-scale ~/.config/i3/background.*
 
+exec ~/.xinitrc
+
 # set gaps
 gaps inner 10
 gaps outer 5
