@@ -166,7 +166,7 @@ set $ws4 "4: Gimp "
 exec gimp
 assign [class="Gimp"] $ws4
 
-set $ws5 "Gaming "
+set $ws5 "5: Gaming "
 exec lutris
 assign [class="Lutris"] $ws5
 exec steam
