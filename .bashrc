@@ -139,6 +139,10 @@ ex() {
 # My aliases
 alias please="sudo"
 alias clip="xclip -sel clip"
+alias tclip="tmux show-buffer | xclip -sel clip"
+
+# add local bin to path
+export PATH="/home/pijon/.local/bin:$PATH"
 
 # Start tmux on login
 [ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit; }
