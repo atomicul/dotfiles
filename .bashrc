@@ -136,10 +136,12 @@ ex() {
 	fi
 }
 
-# My aliases
+# Aliases
 alias please="sudo"
 alias clip="xclip -sel clip"
 alias tclip="tmux show-buffer | xclip -sel clip"
+# cd to root of git repo you're in
+alias gitroot='cd $(git rev-parse --show-toplevel)'
 
 # add local bin to path
 export PATH="/home/pijon/.local/bin:$PATH"
