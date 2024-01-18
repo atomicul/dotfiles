@@ -74,6 +74,10 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym Ctrl+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Shift+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
 bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+# also works with insert
+bindsym Ctrl+Insert exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Shift+Insert exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Insert exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
