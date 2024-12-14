@@ -8,6 +8,8 @@ fi
 
 cd $(dirname "$0")
 
+alias apt-get="apt-get -qq"
+
 apt-get update && apt-get upgrade -y
 
 # Install .bashrc
@@ -71,7 +73,9 @@ apt-get install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
 	libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
 
 git clone https://github.com/Raymo111/i3lock-color.git /tmp/i3lock-color
-bash /tmp/i3lock-color/install-i3lock-color.sh
+cd /tmp/i3lock-color
+bash ./install-i3lock-color.sh
+cd $(dirname $0)
 
 # Install tmux
 apt-get install -y tmux
