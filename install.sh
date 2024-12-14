@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+	echo "You need to run the install script with sudo"
+	printf 'try: `%s`\n' "sudo $0"
+	exit
+fi
+
+cd $(dirname "$0")
+
 apt-get update && apt-get upgrade -y
 
 # Install .bashrc
@@ -15,6 +23,10 @@ unzip /tmp/roboto-mono/RobotoMono.zip -d /usr/local/share/fonts/RobotoMono
 apt-get install -y xfce4-terminal discord steam lutris google-chrome-stable spotify-client gimp
 
 # Configure i3wm
+wget https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2024.03.04_all.deb -O /tmp/sur5r-keyring_2024.03.04_all.deb
+apt-get install /tmp/sur5r-keyring_2024.03.04_all.deb
+echo "deb http://debian.sur5r.net/i3/ $(lsb_release -sc) universe" | tee /etc/apt/sources.list.d/sur5r-i3.list
+apt-get update
 apt-get install -y i3
 
 ## i3/config dependencies
