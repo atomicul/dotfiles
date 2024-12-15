@@ -16,6 +16,9 @@ wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/RobotoMon
 sudo unzip /tmp/roboto-mono/RobotoMono.zip -d /usr/local/share/fonts/RobotoMono
 
 # Install usual applications
+curl -sS https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+sudo apt-get update
 sudo apt-get install -y xfce4-terminal discord steam lutris google-chrome-stable spotify-client gimp
 
 # Configure i3wm
@@ -35,7 +38,7 @@ sed -E "$(
 	printf '%s%s\n' 's/^(set \$primary-monitor ).*$' "/\\1\"${primary_monitor}\"/gm;t"
 )" ./i3/config >/tmp/i3-config
 
-if test ${#secondary_monitors[*]} -lt 1; then
+if test ${#secondary_monitors[@]} -lt 1; then
 	sed -E -i 's/^(set \$secondary-monitor ).*$//gm;t' /tmp/i3-config
 	sed -E -i 's/^bindsym \$mod\+Ctrl\+[0-9].*$//gm;t' /tmp/i3-config
 else
@@ -68,8 +71,10 @@ sudo apt-get install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev 
 
 git clone https://github.com/Raymo111/i3lock-color.git /tmp/i3lock-color
 cd /tmp/i3lock-color
-sudo bash ./install-i3lock-color.sh
+bash ./install-i3lock-color.sh
 cd $(dirname $0)
 
 # Install tmux
 sudo apt-get install -y tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+cp ./.tmux.conf "$HOME/"
