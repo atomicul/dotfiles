@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd $(dirname "$0")
+script_dir=$(pwd)
 
 alias apt-get="apt-get -qq"
 
@@ -38,7 +39,7 @@ sed -E "$(
 	printf '%s%s\n' 's/^(set \$primary-monitor ).*$' "/\\1\"${primary_monitor}\"/gm;t"
 )" ./i3/config >/tmp/i3-config
 
-if test ${#secondary_monitors[@]} -lt 1; then
+if test -z ${secondary_monitors[*]}; then
 	sed -E -i 's/^(set \$secondary-monitor ).*$//gm;t' /tmp/i3-config
 	sed -E -i 's/^bindsym \$mod\+Ctrl\+[0-9].*$//gm;t' /tmp/i3-config
 else
@@ -72,9 +73,14 @@ sudo apt-get install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev 
 git clone https://github.com/Raymo111/i3lock-color.git /tmp/i3lock-color
 cd /tmp/i3lock-color
 bash ./install-i3lock-color.sh
-cd $(dirname $0)
+cd "$script_dir"
 
 # Install tmux
 sudo apt-get install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp ./.tmux.conf "$HOME/"
+
+sudo echo \
+	'#!/bin/bash
+(tmux attach || tmux new-session) && exit' \
+	>/usr/local/bin/tmux-shell
