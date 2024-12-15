@@ -21,7 +21,7 @@ sudo apt-get install -y xfce4-terminal discord steam lutris google-chrome-stable
 # Configure i3wm
 wget https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2024.03.04_all.deb -O /tmp/sur5r-keyring_2024.03.04_all.deb
 sudo apt-get install /tmp/sur5r-keyring_2024.03.04_all.deb
-sudo echo "deb http://debian.sur5r.net/i3/ $(lsb_release -sc) universe" | tee /etc/apt/sources.list.d/sur5r-i3.list
+echo "deb http://debian.sur5r.net/i3/ $(lsb_release -sc) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
 sudo apt-get update
 sudo apt-get install -y i3
 
