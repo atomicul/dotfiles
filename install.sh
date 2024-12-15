@@ -1,11 +1,5 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]; then
-	echo "You need to run the install script with sudo"
-	printf 'try: `%s`\n' "sudo $0"
-	exit
-fi
-
 cd $(dirname "$0")
 
 alias apt-get="apt-get -qq"
@@ -19,20 +13,20 @@ cp ./.bashrc "$HOME/.bashrc"
 mkdir -p /tmp/roboto-mono
 mkdir -p /usr/local/share/fonts/RobotoMono
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/RobotoMono.zip" -O /tmp/roboto-mono/RobotoMono.zip
-unzip /tmp/roboto-mono/RobotoMono.zip -d /usr/local/share/fonts/RobotoMono
+sudo unzip /tmp/roboto-mono/RobotoMono.zip -d /usr/local/share/fonts/RobotoMono
 
 # Install usual applications
-apt-get install -y xfce4-terminal discord steam lutris google-chrome-stable spotify-client gimp
+sudo apt-get install -y xfce4-terminal discord steam lutris google-chrome-stable spotify-client gimp
 
 # Configure i3wm
 wget https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2024.03.04_all.deb -O /tmp/sur5r-keyring_2024.03.04_all.deb
-apt-get install /tmp/sur5r-keyring_2024.03.04_all.deb
-echo "deb http://debian.sur5r.net/i3/ $(lsb_release -sc) universe" | tee /etc/apt/sources.list.d/sur5r-i3.list
-apt-get update
-apt-get install -y i3
+sudo apt-get install /tmp/sur5r-keyring_2024.03.04_all.deb
+sudo echo "deb http://debian.sur5r.net/i3/ $(lsb_release -sc) universe" | tee /etc/apt/sources.list.d/sur5r-i3.list
+sudo apt-get update
+sudo apt-get install -y i3
 
 ## i3/config dependencies
-apt-get install -y redshift feh playerctl
+sudo apt-get install -y redshift feh playerctl
 
 readarray -t secondary_monitors <<<$(xrandr | grep " connected " | grep -v " primary " | awk '{ print$1 }')
 primary_monitor=$(xrandr | grep " primary " | awk '{ print$1 }')
@@ -54,28 +48,28 @@ mkdir -p "$HOME/.config/i3"
 mv /tmp/i3-config "$HOME/.config/i3/config"
 cp ./i3/lock-screen.sh "$HOME/.config/i3"
 
-apt-get install -y i3status
+sudo apt-get install -y i3status
 mkdir -p "$HOME/.config/i3status"
 cp ./i3status/config "$HOME/.config/i3status"
 
-apt-get install -y picom
+sudo apt-get install -y picom
 mkdir -p "$HOME/.config/picom"
 cp ./picom/picom.conf "$HOME/.config/picom"
 
-apt-get install -y rofi
+sudo apt-get install -y rofi
 mkdir -p "$HOME/.config/rofi"
 cp ./rofi/config.rasi "$HOME/.config/rofi"
 
 ## Install i3lock-color
-apt-get install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
+sudo apt-get install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
 	libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev \
 	libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev \
 	libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
 
 git clone https://github.com/Raymo111/i3lock-color.git /tmp/i3lock-color
 cd /tmp/i3lock-color
-bash ./install-i3lock-color.sh
+sudo bash ./install-i3lock-color.sh
 cd $(dirname $0)
 
 # Install tmux
-apt-get install -y tmux
+sudo apt-get install -y tmux
