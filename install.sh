@@ -4,7 +4,7 @@ cd $(dirname "$0")
 
 alias apt-get="apt-get -qq"
 
-apt-get update && apt-get upgrade -y
+sudo apt-get update && apt-get upgrade -y
 
 # Install .bashrc
 cp ./.bashrc "$HOME/.bashrc"
