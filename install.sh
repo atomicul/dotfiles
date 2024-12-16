@@ -80,7 +80,9 @@ sudo apt-get install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp ./.tmux.conf "$HOME/"
 
-sudo echo \
+echo \
 	'#!/bin/bash
 (tmux attach || tmux new-session) && exit' \
-	>/usr/local/bin/tmux-shell
+	>/tmp/tmux-shell
+sudo mv /tmp/tmux-shell /usr/local/bin/
+sudo chmod +x /usr/local/bin/tmux-shell

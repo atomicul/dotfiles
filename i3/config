@@ -86,9 +86,6 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# start a terminal
-bindsym $mod+Return exec xfce4-terminal
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -151,7 +148,8 @@ bindsym $mod+Shift+Right move right
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal "
-exec xfce4-terminal
+bindsym $mod+Return exec xfce4-terminal --hide-menubar --hide-borders --hide-toolbar -e /usr/local/bin/tmux-shell --font="RobotoMono Nerd Font Mono Regular"
+exec xfce4-terminal --hide-menubar --hide-borders --hide-toolbar -e /usr/local/bin/tmux-shell --font="RobotoMono Nerd Font Mono Regular"
 assign [class="Xfce4-terminal"] $ws1
 
 set $ws2 "2: Discord "
