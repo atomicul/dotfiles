@@ -136,21 +136,15 @@ ex() {
 	fi
 }
 
+export EDITOR=nvim
+
 # Aliases
 alias please="sudo"
 alias clip="xclip -sel clip"
 alias tclip="tmux show-buffer | xclip -sel clip"
 # cd to root of git repo you're in
 alias gitroot='cd $(git rev-parse --show-toplevel)'
+alias bat=batcat
 
 # add local bin to path
 export PATH="/home/pijon/.local/bin:$PATH"
-
-# Start tmux on login
-[ -z "$TMUX" ] && { tmux attach || exec tmux new-session && exit; }
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-[ -f "/home/pijon/.ghcup/env" ] && source "/home/pijon/.ghcup/env" # ghcup-env
