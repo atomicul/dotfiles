@@ -29,14 +29,14 @@ fi
 
 alias apt-get="apt-get -qq"
 
-sudo apt-get update && apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 
 # Install .bashrc
 cp ./.bashrc "$HOME/.bashrc"
 
 # Install nerd font
 mkdir -p /tmp/roboto-mono
-mkdir -p /usr/local/share/fonts/RobotoMono
+sudo mkdir -p /usr/local/share/fonts/RobotoMono
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/RobotoMono.zip" -O /tmp/roboto-mono/RobotoMono.zip
 sudo unzip /tmp/roboto-mono/RobotoMono.zip -d /usr/local/share/fonts/RobotoMono
 
@@ -123,7 +123,7 @@ sudo ln -sn /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
 cd "$script_dir"
 
 ## nvim dependencies
-sudo apt-get install -y lazygit ripgrep
+sudo apt-get install -y ripgrep
 
 cp -r ./nvim "$HOME/.config/"
 sudo ln -s "$HOME/.config/nvim" /root/.config/nvim
