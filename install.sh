@@ -1,7 +1,31 @@
 #!/bin/bash
 
+function yes_or_no {
+    while true; do
+        read -p "$* [y/n]: " yn
+        case $yn in
+            [Yy]*) return 0  ;;  
+            [Nn]*) echo "Aborted" ; return  1 ;;
+        esac
+    done
+}
+
 cd $(dirname "$0")
 script_dir=$(pwd)
+
+yes_or_no 'Get ssh keys (requires decryption password)'
+if test $? -eq 0; then
+    mkdir -p "$HOME/.ssh"
+    cp ./.gitconfig "$HOME"
+    until \
+        openssl aes-256-cbc -pbkdf2 -d -in ./.ssh/id_rsa.enc -out "$HOME/.ssh/id_rsa" && \
+            chmod 600 "$HOME/.ssh/id_rsa"  && \
+            ssh-keygen -f "$HOME/.ssh/id_rsa" -y > "$HOME/.ssh/id_rsa.pub" && \
+            chmod 600 "$HOME/.ssh/id_rsa.pub" 
+    do
+        echo "Try again"
+    done
+fi
 
 alias apt-get="apt-get -qq"
 
@@ -101,5 +125,5 @@ cd "$script_dir"
 ## nvim dependencies
 sudo apt-get install -y lazygit ripgrep
 
-cp -r ./.config/nvim "$HOME/.config/"
+cp -r ./nvim "$HOME/.config/"
 sudo ln -s "$HOME/.config/nvim" /root/.config/nvim
