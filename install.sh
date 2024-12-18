@@ -134,3 +134,5 @@ cd "$project_dir"
 cp -r ./nvim "$HOME/.config/"
 sudo ln -s "$HOME/.config/nvim" /root/.config/nvim
 
+# Other packages
+sudo apt-get install -y btop bat
