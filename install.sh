@@ -132,7 +132,8 @@ sudo ln -sn /opt/lazygit /usr/local/bin/lazygit
 cd "$project_dir"
 
 cp -r ./nvim "$HOME/.config/"
+sudo mkdir -p /root/.config
 sudo ln -s "$HOME/.config/nvim" /root/.config/nvim
 
 # Other packages
-sudo apt-get install -y btop bat
+sudo apt-get install -y btop bat xclip
