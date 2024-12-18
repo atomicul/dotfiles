@@ -77,6 +77,8 @@ cd "$script_dir"
 
 # Install tmux
 sudo apt-get install -y tmux
+## Tmux dependencies
+sudo apt-get install -y ranger fzf
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 cp ./.tmux.conf "$HOME/"
 
@@ -86,3 +88,18 @@ echo \
 	>/tmp/tmux-shell
 sudo mv /tmp/tmux-shell /usr/local/bin/
 sudo chmod +x /usr/local/bin/tmux-shell
+
+# Install nvim
+cd /tmp
+wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz' -O ./nvim-linux64.tar.gz
+tar xzvf ./nvim-linux64.tar.gz
+sudo mv ./nvim-linux64 /opt
+sudo mv /opt/nvim-linux64/lib/nvim/parser /opt/nvim-linux64/lib/nvim/_parser
+sudo ln -sn /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
+cd "$script_dir"
+
+## nvim dependencies
+sudo apt-get install -y lazygit ripgrep
+
+cp -r ./.config/nvim "$HOME/.config/"
+sudo ln -s "$HOME/.config/nvim" /root/.config/nvim
