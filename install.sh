@@ -124,6 +124,13 @@ cd "$script_dir"
 
 ## nvim dependencies
 sudo apt-get install -y ripgrep
+cd /tmp
+wget 'https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_x86_64.tar.gz' -O ./lazy-git.tar.gz
+tar xzvf ./lazy-git.tar.gz
+sudo cp lazygit /opt
+sudo ln -sn /opt/lazygit /usr/local/bin/lazygit
+cd "$project_dir"
 
 cp -r ./nvim "$HOME/.config/"
 sudo ln -s "$HOME/.config/nvim" /root/.config/nvim
+
