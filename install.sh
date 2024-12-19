@@ -113,6 +113,13 @@ echo \
 sudo mv /tmp/tmux-shell /usr/local/bin/
 sudo chmod +x /usr/local/bin/tmux-shell
 
+# Tmux sessionizer
+sudo apt-get install -y cargo
+cargo install tmux-sessionizer
+mkdir -p "$HOME/Documents/dev"
+tms config --paths "$HOME/Documents/dev"
+tms config --session 0
+
 # Install nvim
 cd /tmp
 wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz' -O ./nvim-linux64.tar.gz
