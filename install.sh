@@ -75,6 +75,7 @@ fi
 mkdir -p "$HOME/.config/i3"
 mv /tmp/i3-config "$HOME/.config/i3/config"
 cp ./i3/lock-screen.sh "$HOME/.config/i3"
+cp ./i3/background* "$HOME/.config/i3"
 
 sudo apt-get install -y i3status
 mkdir -p "$HOME/.config/i3status"
