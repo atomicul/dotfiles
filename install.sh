@@ -63,7 +63,7 @@ sed -E "$(
 	printf '%s%s\n' 's/^(set \$primary-monitor ).*$' "/\\1\"${primary_monitor}\"/gm;t"
 )" ./i3/config >/tmp/i3-config
 
-if test -z ${secondary_monitors[*]}; then
+if test -z "${secondary_monitors[*]}"; then
 	sed -E -i 's/^(set \$secondary-monitor ).*$//gm;t' /tmp/i3-config
 	sed -E -i 's/^bindsym \$mod\+Ctrl\+[0-9].*$//gm;t' /tmp/i3-config
 else
