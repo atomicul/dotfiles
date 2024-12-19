@@ -35,6 +35,10 @@ sudo apt-get update && sudo apt-get upgrade -y
 # Install .bashrc
 cp ./.bashrc "$HOME/.bashrc"
 
+# Install keyboard
+cp ./keyboard /tmp/keyboard \
+    && sudo mv /tmp/keyboard /etc/default/keyboard
+
 # Install nerd font
 mkdir -p /tmp/roboto-mono
 sudo mkdir -p /usr/local/share/fonts/RobotoMono
