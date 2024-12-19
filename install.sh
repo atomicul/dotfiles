@@ -124,7 +124,7 @@ tms config --session 0
 
 # Install nvim
 cd /tmp
-if test $architecture -eq 'arm64'; then
+if [ "$architecture" = 'arm64' ]; then
     wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz' -O ./nvim-linux64.tar.gz
 else
     wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-macos-arm64.tar.gz' -O ./nvim-linux64.tar.gz
@@ -138,7 +138,7 @@ cd "$script_dir"
 ## nvim dependencies
 sudo apt-get install -y ripgrep
 cd /tmp
-if test $architecture -eq 'arm64'; then
+if [ "$architecture" = 'arm64' ]; then
     wget 'https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_arm64.tar.gz' -O ./lazy-git.tar.gz
 else
     wget 'https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_x86_64.tar.gz' -O ./lazy-git.tar.gz
