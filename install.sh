@@ -17,6 +17,7 @@ architecture=$(dpkg --print-architecture)
 yes_or_no 'Get ssh keys (requires decryption password)'
 if test $? -eq 0; then
     mkdir -p "$HOME/.ssh"
+    touch "$HOME/.ssh/id_rsa"
     cp ./.gitconfig "$HOME"
     until \
         openssl aes-256-cbc -pbkdf2 -d -in ./.ssh/id_rsa.enc -out "$HOME/.ssh/id_rsa" && \
