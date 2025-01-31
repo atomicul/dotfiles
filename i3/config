@@ -19,7 +19,7 @@ font pango:RobotoMono Nerd Font Mono 8
 exec --no-startup-id picom
 
 # Set background
-exec feh --bg-scale ~/.config/i3/background.*
+exec feh --bg-scale ~/.config/i3/background*
 
 exec ~/.xinitrc
 
