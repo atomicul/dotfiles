@@ -7,6 +7,14 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
   require('cmp_nvim_lsp').default_capabilities()
 )
 
+local function on_list(options)
+  vim.fn.setqflist({}, ' ', {
+    title = options.title,
+    items = options.items,
+    context = options.context,
+  })
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
@@ -17,7 +25,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
     vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-    vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+    vim.keymap.set('n', 'gr',  function()
+      vim.lsp.buf.references(nil, {
+        includeDeclaration = false,
+        on_list = on_list,
+        auto_open = false,
+      }) end)
+    vim.keymap.set('n', '<leader>cd', function()
+      vim.diagnostic.setqflist({ open = false }) end)
+    vim.keymap.set('n', ']f', '<cmd>:cnext<cr>', opts)
+    vim.keymap.set('n', '[f', '<cmd>:cprev<cr>', opts)
+    vim.keymap.set('n', '<leader>qf', '<cmd>copen<cr>')
     vim.keymap.set('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
     vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>', opts)
     vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>', opts)
