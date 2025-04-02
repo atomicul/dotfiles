@@ -12,7 +12,6 @@ function yes_or_no {
 
 cd $(dirname "$0")
 script_dir=$(pwd)
-architecture=$(dpkg --print-architecture)
 
 yes_or_no 'Get ssh keys (requires decryption password)'
 if test $? -eq 0; then
@@ -129,11 +128,7 @@ tms config --session 0
 
 # Install nvim
 cd /tmp
-if [ "$architecture" = 'arm64' ]; then
-    wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz' -O ./nvim-linux64.tar.gz
-else
-    wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-macos-arm64.tar.gz' -O ./nvim-linux64.tar.gz
-fi
+wget 'https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz' -O ./nvim-linux64.tar.gz
 tar xzvf ./nvim-linux64.tar.gz
 sudo mv ./nvim-linux64 /opt
 sudo mv /opt/nvim-linux64/lib/nvim/parser /opt/nvim-linux64/lib/nvim/_parser
@@ -143,11 +138,7 @@ cd "$script_dir"
 ## nvim dependencies
 sudo apt-get install -y ripgrep
 cd /tmp
-if [ "$architecture" = 'arm64' ]; then
-    wget 'https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_arm64.tar.gz' -O ./lazy-git.tar.gz
-else
-    wget 'https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_x86_64.tar.gz' -O ./lazy-git.tar.gz
-fi
+wget 'https://github.com/jesseduffield/lazygit/releases/download/v0.44.1/lazygit_0.44.1_Linux_x86_64.tar.gz' -O ./lazy-git.tar.gz
 tar xzvf ./lazy-git.tar.gz
 sudo cp lazygit /opt
 sudo ln -sn /opt/lazygit /usr/local/bin/lazygit
