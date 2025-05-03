@@ -20,6 +20,10 @@ install () {
     sleep 2
     sudo apt-get install -y tmux
 
+    echo 'Installing fish...'
+    sleep 2
+    sudo apt-get install -y fish
+
     echo 'Installing ranger, fzf...'
     sleep 2
     sudo apt-get install -y ranger fzf
