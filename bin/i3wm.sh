@@ -16,7 +16,6 @@ main () {
 }
 
 install () {
-    clear
     echo 'Installing a NerdFont...'
     sleep 2
     mkdir -p /tmp/roboto-mono
@@ -24,17 +23,14 @@ install () {
     wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/RobotoMono.zip" -O /tmp/roboto-mono/RobotoMono.zip
     sudo unzip /tmp/roboto-mono/RobotoMono.zip -d /usr/local/share/fonts/RobotoMono
 
-    clear
     echo 'Installing i3wm...'
     sleep 2
     sudo apt-get install -y i3 i3status picom rofi
 
-    clear
     echo 'Installing redshift, feh, playerctl'
     sleep 2
     sudo apt-get install -y redshift feh playerctl
 
-    clear
     echo 'Installing i3lock-color'
     sleep 2
     sudo apt-get install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev \
@@ -50,7 +46,6 @@ install () {
 configure () {
     cd "$(dirname "$0"/..)"
 
-    clear
     echo "Copying i3wm config files..."
     sleep 2
 
