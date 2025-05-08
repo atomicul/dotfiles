@@ -1,5 +1,6 @@
-# Alt key
-set $mod Mod1
+# Mod key
+# Alt and Super keys are to be later swapped with setxkbmap
+set $mod Mod4
 
 # Needed for icons
 font pango:RobotoMono Nerd Font Mono 8
@@ -26,7 +27,7 @@ default_border pixel 1
 default_floating_border pixel 1
 
 # Set keyboard layout to Dvorak Programmer
-exec --no-startup-id setxkbmap -layout "us" -variant "dvp" -option ctrl:nocaps
+exec --no-startup-id setxkbmap -layout "us" -variant "dvp" -option ctrl:nocaps -option altwin:swap_alt_win
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
