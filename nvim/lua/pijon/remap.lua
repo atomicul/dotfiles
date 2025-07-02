@@ -16,3 +16,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.del("n", "<C-W><C-D>")
 vim.keymap.del("n", "<C-W>d")
+
+-- Prevent squirly brackets from adding to jump list
+vim.keymap.set('n', '}', function()
+    vim.cmd('keepjumps normal! ' .. vim.v.count1 .. '}')
+end, { desc = "Keepjumps paragraph forward" })
+
+vim.keymap.set('n', '{', function()
+    vim.cmd('keepjumps normal! ' .. vim.v.count1 .. '{')
+end, { desc = "Keepjumps paragraph backward" })
