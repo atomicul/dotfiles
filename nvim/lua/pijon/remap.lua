@@ -17,6 +17,14 @@ vim.keymap.set("n", "N", "Nzzzv")
 vim.keymap.del("n", "<C-W><C-D>")
 vim.keymap.del("n", "<C-W>d")
 
+-- Scroll one line
+vim.keymap.set('n', '<C-t>', '<C-e>')
+-- The default <C-y> works for scrolling up
+
+-- Scroll (half) screens
+vim.keymap.set('n', '<C-n>', '<C-d>')
+vim.keymap.set('n', '<C-p>', '<C-u>')
+
 -- Prevent squirly brackets from adding to jump list
 vim.keymap.set('n', '}', function()
     vim.cmd('keepjumps normal! ' .. vim.v.count1 .. '}')
