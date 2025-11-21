@@ -22,8 +22,8 @@ vim.keymap.set('n', '<C-t>', '<C-e>')
 -- The default <C-y> works for scrolling up
 
 -- Scroll (half) screens
-vim.keymap.set('n', '<C-n>', '<C-d>')
-vim.keymap.set('n', '<C-p>', '<C-u>')
+vim.keymap.set({'n', 'v'}, '<C-n>', '<C-d>')
+vim.keymap.set({'n', 'v'}, '<C-p>', '<C-u>')
 
 -- Prevent squirly brackets from adding to jump list
 vim.keymap.set('n', '}', function()
