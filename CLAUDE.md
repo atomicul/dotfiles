@@ -35,3 +35,8 @@ making any commit, you MUST run the appropriate code checks depending on the
 project: fomatting, static lsp checks, linting, tests. Lastly, do not use
 comments. You can document code functions/classes if need be but no need to add
 a comment after every line. Add comments only if they are really necessary.
+
+# Secrets and credentials
+Never read, query, or process secrets, credentials, or tokens. If a task
+requires secrets, ask the user to run the command themselves rather than
+attempting to retrieve the values.
